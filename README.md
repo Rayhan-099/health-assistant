@@ -40,7 +40,7 @@ Follow these instructions to set up the project locally on your machine.
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/Rayhan-099/health-assistant.git](https://github.com/Rayhan-099/health-assistant.git)
+   git clone https://github.com/Rayhan-099/health-assistant.git
    cd health-assistant
    ```
 
