@@ -1,0 +1,13 @@
+project_id = "rjfwkmxxjnpxyngereqo"
+
+[functions.diet-planner-chat]
+verify_jwt = false
+
+[functions.health-chat]
+verify_jwt = false
+
+[functions.vaccination-reminders]
+verify_jwt = false
+
+[functions.analyze-report]
+verify_jwt = false

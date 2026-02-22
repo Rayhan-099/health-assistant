@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* HealthConnect Design System - Glassmorphism with Velvet Jade Theme */
+
+@layer base {
+  :root {
+    /* New Gradient Colors */
+    --velvet-jade-dark: 195 65% 22%;   /* #134E5E - dark teal */
+    --velvet-jade-light: 142 35% 57%;  /* #71B280 - mint green */
+    --velvet-jade-mid: 169 40% 35%;    /* intermediate blend */
+    
+    /* Glass System Colors */
+    --glass-white: 0 0% 100%;
+    --glass-white-10: 0 0% 100%;       /* 10% opacity for glass backgrounds */
+    --glass-white-20: 0 0% 100%;       /* 20% opacity for glass borders */
+    --glass-dark: 195 40% 15%;         /* Dark glass variant based on new theme */
+    
+    /* Semantic Color System */
+    --background: var(--velvet-jade-dark);
+    --foreground: 0 0% 98%;
+    
+    --card: var(--glass-white-10);
+    --card-foreground: 0 0% 98%;
+    
+    --popover: var(--glass-white-10);
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: var(--glass-white);
+    --primary-foreground: var(--velvet-jade-dark);
+    
+    --secondary: var(--glass-dark);
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: var(--glass-white-10);
+    --muted-foreground: 0 0% 70%;
+    
+    --accent: var(--velvet-jade-light);
+    --accent-foreground: var(--velvet-jade-dark);
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: var(--glass-white-20);
+    --input: var(--glass-white-10);
+    --ring: var(--velvet-jade-light);
+    
+    /* Glass Effects */
+    --glass-blur: blur(20px);
+    --glass-shadow: 0 8px 32px 0 rgba(19, 78, 94, 0.37);
+    --glass-glow: 0 0 40px rgba(113, 178, 128, 0.3);
+    
+    /* Animations */
+    --transition-glass: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --scale-hover: 1.05;
+    
+    --radius: 1.5rem; /* 24px for glass panels */
+  }
+
+  .dark {
+    /* Dark mode uses same values for glassmorphism consistency */
+    --background: var(--velvet-jade-dark);
+    --foreground: 0 0% 98%;
+    --card: var(--glass-white-10);
+    --card-foreground: 0 0% 98%;
+    --popover: var(--glass-white-10);
+    --popover-foreground: 0 0% 98%;
+    --primary: var(--glass-white);
+    --primary-foreground: var(--velvet-jade-dark);
+    --secondary: var(--glass-dark);
+    --secondary-foreground: 0 0% 98%;
+    --muted: var(--glass-white-10);
+    --muted-foreground: 0 0% 70%;
+    --accent: var(--velvet-jade-light);
+    --accent-foreground: var(--velvet-jade-dark);
+    --border: var(--glass-white-20);
+    --input: var(--glass-white-10);
+    --ring: var(--velvet-jade-light);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-poppins;
+    background: linear-gradient(135deg, hsl(var(--velvet-jade-dark)) 0%, hsl(var(--velvet-jade-light)) 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  
+  /* Add subtle animated background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(113, 178, 128, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(113, 178, 128, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 40% 80%, rgba(113, 178, 128, 0.06) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+@layer components {
+  /* Glass Panel Base */
+  .glass-panel {
+    @apply bg-white/10 backdrop-blur-[20px] border border-white/20 rounded-3xl;
+    box-shadow: var(--glass-shadow);
+    transition: var(--transition-glass);
+  }
+  
+  /* Glass Button Variants */
+  .glass-button-primary {
+    @apply glass-panel bg-white/15 text-white font-medium px-8 py-4 hover:bg-white/25 hover:scale-105;
+    box-shadow: var(--glass-shadow), var(--glass-glow);
+  }
+  
+  .glass-button-secondary {
+    @apply glass-panel bg-black/20 text-white font-medium px-8 py-4 hover:bg-black/30 hover:scale-105;
+  }
+  
+  /* Glass Navbar */
+  .glass-navbar {
+    @apply glass-panel fixed top-4 left-4 right-4 z-50 px-6 py-4;
+    backdrop-filter: var(--glass-blur);
+  }
+  
+  /* Glass Card */
+  .glass-card {
+    @apply glass-panel p-6 hover:bg-white/15 hover:scale-[1.02];
+    transition: var(--transition-glass);
+  }
+  
+  /* Chat Bubble Styles */
+  .chat-bubble-user {
+    @apply bg-green-500 text-white rounded-2xl rounded-br-md px-4 py-2 max-w-xs ml-auto;
+  }
+  
+  .chat-bubble-bot {
+    @apply glass-panel text-white rounded-2xl rounded-bl-md px-4 py-2 max-w-xs mr-auto;
+  }
+}
+
+@layer utilities {
+  /* Animation keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-10px) rotate(1deg); }
+    66% { transform: translateY(5px) rotate(-1deg); }
+  }
+  
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: var(--glass-shadow); }
+    50% { box-shadow: var(--glass-shadow), var(--glass-glow); }
+  }
+  
+  /* Utility classes */
+  .animate-float {
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+}
