@@ -17,7 +17,7 @@ serve(async (req) => {
       throw new Error('No image data provided');
     }
 
-    const GEMINI_API_KEY = Deno.env.get('AIzaSyDr7JBQDH2LDMGY1N7piEeFceEX5p0ObK8');
+    const GEMINI_API_KEY = Deno.env.get('GEMINI_API_KEY');
 
 if (!GEMINI_API_KEY) {
   throw new Error('GEMINI_API_KEY not configured in Supabase Secrets');
